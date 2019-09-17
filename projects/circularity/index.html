@@ -1,0 +1,119 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Operation Spark || Motion Poem</title>
+        <meta name="description" content="Operation Spark Motion Poem">
+        <meta name="author" content="operationspark.org">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/style.css" rel="stylesheet">
+
+        <!-- all core CreateJS and 3rd party libraries are listed here: -->
+        <script src="bower_components/lodash/lodash.min.js"></script>
+        <script src="bower_components/easeljs/lib/easeljs-0.8.2.min.js"></script>
+        <script src="bower_components/opspark-draw/draw.js"></script>
+        <script src="bower_components/racket/racket.js"></script>
+
+        <!-- our app javascript code -->
+        <script src="js/opspark.js"></script>
+        
+        <style type="text/css">
+            /*override default styles here*/
+        </style>
+    </head>
+    <body>
+        <div>
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
+        <script id="motion-poem">
+            (function(){
+                'use strict';
+                
+                var 
+                    draw = window.opspark.draw,
+                    physikz = window.opspark.racket.physikz,
+                    
+                    app = window.opspark.makeApp({update: update}),
+                    canvas = app.canvas, 
+                    view = app.view,
+                    fps = draw.fps('#000');
+                
+                ////////////////////////////////////////////////////////////////
+                // ALL CODE GOES BELOW HERE                                   //
+                ////////////////////////////////////////////////////////////////
+                
+                // TODO 1: Declare and initialize our variables //
+                
+                var circle;
+                var circles = [];
+               
+               function drawCircle() {
+                    // TODO 2: Draw a circle //
+                    circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+                    physikz.addRandomVelocity(circle, canvas);
+                    view.addChild(circle);
+             
+                    circles.push(circle);
+                 }
+                    
+                
+                
+                // TODO 3: Draw 100 circles //
+                for (var i = 0; i < 50; i++) {
+                    drawCircle();
+                    circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+                    
+                    if (circle.alpha < .2) {
+                        draw.blurFilterOn(circle);
+                    }
+                    
+                    physikz.addRandomVelocity(circle, canvas);
+                    circles.push(circle);
+                    view.addChild(circle);
+                }
+                
+                view.addChild(fps);
+                app.addUpdateable(fps);
+                
+                function update() 
+                {
+                    /* 
+                     * For-loops also provide a convenient way to access elements of an Array one at a time.
+                     * We can use the variable i (short for index) as a placeholder for the numbered index we want to access
+                     * Like so: array[i]. 
+                     */
+                     
+                    for (var i = 0; i < circles.length; i++) {
+                        // TODO 5 : Access one circle at time from the circles Array //
+                        circle = circles[i];
+                        // TODO 6 : Update the circles position //
+                        physikz.updatePosition(circle);
+                        // TODO 7 : YOUR CODE STARTS HERE //////////////////////
+                        
+                        if (circle.x > canvas.width) {
+                            circle.x = 0;
+                        } else if (circle.x < 0) {
+                            circle.x = canvas.width;
+                        } if (circle.y < 0) {
+                            circle.y = canvas.height;
+                        } else if (circle.y > canvas.height) {
+                            circle.y = 0;
+                        }
+                        
+                        // YOUR TODO 7 CODE ENDS HERE //////////////////////////
+                    }
+                    
+                }
+                
+            ////////////////////////////////////////////////////////////////////
+            // NO CODE BELOW HERE                                             //
+            ////////////////////////////////////////////////////////////////////
+            })();
+        </script>
+    </body>
+
+</html>

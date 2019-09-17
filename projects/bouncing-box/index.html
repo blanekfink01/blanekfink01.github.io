@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="jquery.min.js"></script>
+
+<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
+	<!-- BEGIN CSS -->
+	<style>
+		/* TODO 1 */
+		[class="box"] {
+			display: block;
+			position: absolute;
+			width: 256px;
+			height: 256px;
+			top: 100px;
+			left: 0px;
+			background-image: url(https://vignette.wikia.nocookie.net/sonic/images/8/8f/The_Sonic_Runners_1-UP.png/revision/latest?cb=20150301162416);
+			background-repeat: no-repeat;
+			background-size: cover;
+			font-size: 300%;
+			text-align: center;
+		}
+		body {background-image: url(https://i.pinimg.com/originals/1b/94/8a/1b948a6210b05278d419a0251c100532.jpg);
+
+		}
+	</style>
+
+</head>
+<body class="board">
+	<!-- HTML for the box -->
+	<div class="box">?</div>
+
+	<!-- BEGIN JAVASCRIPT -->
+	<script>
+		(function(){
+			'use strict'
+			/* global &*/
+
+			// Variable declarations
+			var box;
+			var boardWidth;
+			var update;
+			var handleBoxClick;
+
+			// jQuery stuff setup for you
+			box = $('.box');
+			boardWidth = $('.board').width();
+
+			// TODO 2
+			var position;
+			var points;
+			var speed;
+			var direction;
+
+			position = 0;
+			points = 0;
+			speed = 1;
+			direction = 1
+			
+			box.css('left', position);
+			box.text(points);
+		
+				// TODO 3 / 6 / 7 / 8
+			update = function() {
+				position = position + (speed * direction);
+	    		box.css('left', position);
+	    		box.text(points);
+	    		if(position > boardWidth) {
+	    			direction = -1;
+	    		}
+	    		if(position < 0) {
+	    			direction = 1
+	    		}
+			};
+			
+			
+			handleBoxClick = function() {
+				// TODO 4 / 5
+				speed = speed + .1;
+    			box.css('left', position);
+    			points = points + 1
+    			if(position > boardWidth) {
+				 position = 0;
+				}
+			};
+
+
+			//this calls update every 1 millisecond
+			setInterval(update, 1);
+			// this calls the handle handleBoxClick function every time the box is clicked on
+			box.on('click', handleBoxClick);
+		})();
+	</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+                body {
+                background-image: url("http://www.quadmod.com/wp-content/uploads/2017/09/Nordic-Loki-Web-Swatch-800x200.jpg");
+                color: rgb(45, 45, 45);
+                padding: 10px;
+                font-family: georgia;
+            }
+            header {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            [id=all-contents] {
+                max-width: 800px;
+                margin: auto;
+            }
+    
+            /* navigation menu */
+            nav {
+                background: rgb(117,245,20);
+                margin: 0 auto;
+                margin-bottom: 20px;
+                display: flex;
+                padding: 10px;
+                border: 2px solid red;
+                border-radius: 25px;
+            }
+            nav header {
+                display: flex;
+                align-items: center;
+                color: rgb(255, 255, 255);
+                flex: 1;
+            }
+            nav ul {
+                list-style-image: none;
+            }
+            nav li {
+                display: inline-block;
+                padding: 0 10px;
+            }
+            nav a {
+                text-decoration: none;
+                color: #fff;
+            }
+    
+            /* main container area beneath menu */
+            main {
+                background: rgb(255, 8, 0);
+                display: flex;
+                border-radius: 10px;
+                
+            }
+[class=content] {
+    flex: 1;
+    border-radius:35px;
+    padding: 15px;
+    margin-top:15px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.content h1, h2, h3, h4, h5, h6 {
+    margin: 10px;
+}
+
+.content section > a {
+    text-decoration: none;
+}
+
+.code {
+    font-family: monospace;
+    background: black;
+    border: 1px solid #ccc;
+    color: rgb(0,250,0);
+    white-space: pre;
+    width: 100%;
+    margin-bottom: 20px;
+    overflow: scroll;
+}
+
+.topic-heading {
+    padding-left: 50px;
+    text-transform: capitalize;
+}
+
+.line {
+    display: flex;
+    padding: 2px 0;
+}
+
+.line:nth-child(even) {
+    background: black;
+}
+
+.line-number {
+    min-width: 40px;
+    padding-left: 5px;
+    text-align: right;
+    padding-right: 20px;
+}
